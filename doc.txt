@@ -126,3 +126,27 @@ Section 2 Pengenalan Backend
         503 (Service Unavailable) - Permintaan client gagal dijalankan karena server tidak dapat menangani permintaan.  
     ketika permintaan(request) client gagal dijalankan, kita harus mengembalikan status code yang sesuai dengan kesalahan yang terjadi. penggunaan response code yang tepat dapat meminimalisir kebingungan client/user dalam memanfaatkan API.
     https://developer.mozilla.org/en-US/docs/Web/HTTP/Status?retiredLocale=id
+
+    #URL Design
+    terdapat sebuah URL, PATH atau endpoint yang merupakan bagian terpenting yang harus diperhatikan dalam membuat REST API, dengan endpoint yang baik dan benar penggunaan API akan lebih mudah dipahami.
+    dalam  merancang endpoint ikutilah best practice atau aturan umum (convention) agar rancangan kita bisa sesuai standar yang diharapkan.
+    
+    # Gunakan Kata Benda daripada Kata Kerja pada Endpoint Path
+    hindari penggunaan kata kerja dalam menetapkan nama endpoint contohnya /getNames atau /addNames. karena aksi dapat ditentukan secara jelas melalui HTTP Verb, kita tidak perlu menambahkan kata kerja diendpoint.
+    adanya HTTP verbs membantu memberikan endpoint GET/names untuk mendapatkan data nama atau POST/names untuk menambahkan nama.
+
+    #Gunakan Kata Jamak pada Endpoint untuk Resource Collection
+    selalu gunakan kata jamak(plural) saat memberi nama endpoint, karena jarang ada data yang hanya memiliki satu item, dengan kata jamak membantu developer menjadi konsisten dengan apa yang ada didalam database
+    karena tabel pada databasepun biasanya memiliki lebih dari satu record data
+    terus bagaimana bila ingin mengakses satu data saja? contohnya mendapatkan nama secara spesifik.
+        gunakan paramater path untuk mendapatkan  data spesifik contohnya endpoint /names/:id merupakan contoh yang baik untuk mendapatkan nama secara spesifik berdasarkan id
+    
+    #Gunakan Endpoint berantai untuk resource yang memiliki hirarki/relasi
+    endpoint dari resource yang memiliki hirarki/relasi sebaiknya dituliskan secara berantai contohnya untuk mendapatkan daftar komentar dari sebuah review,
+    endpoint GET/reviews/:id/comments merupakan contoh yang tepat.
+    penggunaan endpoint tersebut memperjelas permintaan dari client hanya dengan melihat endpoint yang dituju.
+    tidak hanya GET, prinsip ini cocok diterapkan HTTP Verb lainnya seperti POST,PUT dan DELETE
+
+
+
+
