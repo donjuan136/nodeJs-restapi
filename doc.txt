@@ -1,0 +1,85 @@
+Section 1 Pendahuluan
+    tujuan dari course ini adalah
+        mendefinisikan apa itu Back-End;
+        mendefinisikan apa itu Server;
+        mengetahui cara client-server berkomunikasi melalui protokol HTTP; dan
+        memahami apa itu REST API.
+
+    prequisite Knowledge
+        Basic Javascript
+        OOP Javascript
+        Functional Javascript
+        Basic & Install NodeJS
+        Automated Testing (Jest)
+    prequisite Tools
+        Text Editor: VSCode/Atom
+        NodeJs
+
+Section 2 Pengenalan Backend
+    #Backend adalah seseorang yang bertanggung jawab menyediakan kebutuhan yang tak terlihat oleh pengguna seperti Data
+        tanggung jawab seorang Backend Developer adalah menyimpan,mengelola transaksi data secara aman yang bertujuan mendukung aplikasi front-end bekerja sesuai dengan fungsinya
+   
+    #Server adalah sebuah perantara yang bertanggung jawab atas transaksi antar pengguna dan sistem aplikasi. transaksi yang dilakukan oleh frontend(end user) harus melalui perantara agar
+        tidak bisa mengakses databases secara langsung dan berlaku juga dengan backend harus melalui perantara. selain itu server merupakan sebuah sistem yang menyediakan sumber daya berupa data, layanan atau program yang disajikan kepada pengguna.
+        server bukan sebuah perangkat keras melainkan sistem yang dapat melayani sebuah permintaan dari perangkat lain, dan bertugas melayani sebuah layanan services.
+        berikut ini adalah tipe server dan layanannya
+            File Server : melayani penyimpanan dan pendistribusian berkas.
+            Application Server : melayani hosting sebuah program atau aplikasi.
+            DNS Server : mengubah nama domain (contoh: google.com) ke dalam bentuk IP Address (contoh: 45.1.25.171).
+            Web Server : melayani hosting sebuah program atau aplikasi (seperti Application Server) yang dapat diakses oleh client melalui internet maupun intranet.
+            Database Server : melayani penyimpanan dan pendistribusian data terstruktur.
+    
+    #Web Server dan Web Service
+        web server adalah Server yang dapat menjalankan program dan dapat diakses melalui internet atau intranet.
+        Web Service adalah Program yang dijalankan di web server agar kebutuhan bisnis terpenuhi.
+        kita perlu membuat dan menjalankan program seperti SOP dan dapat menentukan logika bisnis sesuai kebutuhan, Melalui web service inilah aplikasi Front-End (client) dan Back-End dapat bertransaksi.
+    
+    #Komunikasi Client-Server
+        Salah satu protokol yang dapat digunakan untuk berinteraksi dengan web server adalah HTTP/HTTPS, yang dikenal dengan pola request-response, yang berarti bahwa kita harus melakukan permintaan(request) terlebih dahulu sebelum dapat menerima tanggapan(response).
+        untuk melakukan request kita perlu mengajukan permintaan, request pada protokol HTTP harus memiliki informasi yang cukup agar dapat dieksekusi oleh server, informasi pada request memiliki
+            Request line : berisikan method/verb seperti GET (mengambil data), POST (menambahkan/mengirim data), PUT (memperbaharui data), atau DELETE (menghapus data); path atau alamat yang diminta; dan versi HTTP yang digunakan.
+            Header : memuat informasi yang dilampirkan terkait request seperti format dokumen (contoh application/json, text/html, dsb), kunci akses, dsb.
+            Body (opsional) : mengandung data yang dibutuhkan oleh server, bisa dalam bentuk teks, JSON, dll. Body tidak wajib dilampirkan bila server tidak membutuhkan data apapun.
+        jika melakukan request informasi yang dilampirkan pada request tidak sesuai maka server akan menolaknya dengan response negatif.
+        setiap request yang dilakukan baik dengan informasi sesuai ataupun tidak akan mendapatkan respons. Respons atau tanggapan yang dikirimkan dari server untuk client juga mengandung informasi. Berikut beberapa informasi yang dilampirkan oleh respons
+            Status line : berisikan HTTP versi yang digunakan; status code berupa tiga digit angka yang menandakan keberhasilan dari permintaan; reason phrase atau status text yang merupakan pesan berdasarkan status code dalam bentuk teks sehingga lebih mudah dimengerti.
+            Header : mengandung informasi yang dilampirkan terkait response seperti format dokumen.
+            Body (opsional, namun biasanya selalu dilampirkan) : memuat data yang dikirimkan oleh server. Data dapat berupa HTML, JSON, gambar, dsb.
+        pada protokol HTTP bila kita melakukan request yang tidak dapat diolah oleh server maka kita tidak akan mendapatkan data yang diinginkan dan server akan memberikan response negatif dengan alasan sesuai protocol yang dibuat contoh 404(not found)
+        dan protokol HTTP memiliki status code yang dikirimkan jika client melakukan request entah ketika request berhasil ataupun gagal server akan memberikan response sesuai status code yang dibuat oleh Developer
+    
+    #Latihan: Membuat Permintaan HTTP (HTTP Request)
+        cURL atau Client URL merupakan software berbasis command line yang dapat melakukan transaksi data melalui beberapa protokol internet, salah satunya HTTP/S. cURL dapat diakses secara langsung tanpa proses install melalui Terminal
+        ketika kita menjalankan perintah 'curl -X GET https://coffee-api.dicoding.dev/coffees -i' server akan memberikan response
+            HTTP/1.1 200 OK
+            Server: nginx/1.18.0 (Ubuntu)
+            Date: Wed, 22 May 2024 08:23:33 GMT
+            Content-Type: application/json; charset=utf-8     
+            Content-Length: 188
+            Connection: keep-alive
+            content-security-policy: upgrade-insecure-requests
+            referrer-policy: strict-origin-when-cross-origin  
+            x-frame-options: DENY
+            x-content-type-options: nosniff
+            x-xss-protection: 1; mode=block
+            vary: origin
+            access-control-expose-headers: WWW-Authenticate,Server-Authorization
+            cache-control: no-cache
+            accept-ranges: bytes
+
+            {"message":"Berikut daftar kopi yang tersedia","coffees":[{"id":1,"name":"Kopi Tubruk","price":12000},{"id":2,"name":"Kopi Tarik","price":15000},{"id":3,"name":"Kopi Jawa","price":18000}]}
+       
+        berikut ini adalah definisi dari setiap paramater Terminal :
+            curl : merupakan perintah untuk menggunakan program cURL pada Terminal atau CMD.
+            -X GET : menetapkan HTTP method/verb yang kita gunakan. GET berarti kita ingin mendapatkan sebuah data.
+            https://coffee-api.dicoding.dev/coffees : merupakan alamat request yang dituju.
+            -i : memberikan informasi detail terhadap response yang diberikan (HTTP response headers).
+        
+        berikut ini adalah hasil dari curl request dan penjelasannya:
+            HTTP/1.1 : merupakan HTTP version yang digunakan oleh web server dalam menanggapi permintaan.
+            200 : merupakan status code dari request. Karena status code diawali dengan angka 2, berarti request kita berhasil dilakukan.
+            OK : merupakan pesan teks dari status code, 200 berarti “OK”.
+            Content-Type: application/json; : merupakan tipe konten yang digunakan web server dalam memberikan data. Karena nilainya application/json, itu berarti server menggunakan format json.
+            JSON Data (kode di bagian bawah) : merupakan data yang diberikan oleh web server. Kita bisa melihat web server memberikan informasi kopi yang tersedia beserta harganya menggunakan format JSON.
+
+
