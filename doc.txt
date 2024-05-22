@@ -109,6 +109,20 @@ Section 2 Pengenalan Backend
     string,number,boolean atau nilai non primitif seperti object atau array
     Catatan:
         JSON ialah Javascript object Notation bukan berarti JSON adalah bahasa pemrograman javascript, format JSON bisa digunakan oleh semua bahasa pemrograman yang ada.
-        
 
+    #HTTP Verbs/Methods
+    REST API memiliki protokol HTTP dan HTTP memiliki verbs untuk menentukan aksi contohnya GET, POST, PUT, DELETE, PATCH. verbs tersebutlah yang umum digunakan dalam operasi CRUD
 
+    #HTTP Response Code
+    HTTP memiliki sebuah status-line yang berguna untuk mengidentifikasi bahwa permintaan(request) yang dilakukan dari client berhasil atau tidak, karena itu penting memperhatikan dan menerapkan response status code secara berinteraksi
+    status code memiliki 3 digit angka, sebagai contoh yang sering digunakan:
+        200 (OK) - Permintaan client berhasil dijalankan oleh server.
+        201 (Created) - Server berhasil membuat/menambahkan resource yang diminta client.
+        400 (Bad Request) - Permintaan client gagal dijalankan karena proses validasi input dari client gagal.
+        401 (Unauthorized) - Permintaan client gagal dijalankan. Biasanya ini disebabkan karena pengguna belum melakukan proses autentikasi.
+        403 (Forbidden) - Permintaan client gagal dijalankan karena ia tidak memiliki hak akses ke resource yang diminta.
+        404 (Not Found) - Permintaan client gagal dijalankan karena resource yang diminta tidak ditemukan.
+        500 (Internal Server Error) - Permintaan client gagal dijalankan karena server mengalami eror (membangkitkan Exception).
+        503 (Service Unavailable) - Permintaan client gagal dijalankan karena server tidak dapat menangani permintaan.  
+    ketika permintaan(request) client gagal dijalankan, kita harus mengembalikan status code yang sesuai dengan kesalahan yang terjadi. penggunaan response code yang tepat dapat meminimalisir kebingungan client/user dalam memanfaatkan API.
+    https://developer.mozilla.org/en-US/docs/Web/HTTP/Status?retiredLocale=id
