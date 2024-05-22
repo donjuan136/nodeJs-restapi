@@ -1,0 +1,77 @@
+Section 2 Dasar-Dasar Node.js untuk Back-End
+
+    sebagai seorang backend developer harus memiliki bekal dalam membangun sebuah aplikasi backend atau web services
+    tujuan dari course ini adalah
+    mengetahui NodeJS
+    mengetahui nodejs global object
+    mengetahui modularization
+    mengetahui NPM (Node Package Manager)
+    Mengetahui Eventing
+    Mengetahui FileSystem
+    Mengetahui teknik Readable Stream dan Writable Stream
+
+    #Apa itu NodeJS
+    Browser merupakan satu-satunya tempat untuk mengeksekusi kode Javascript oleh karena itu banyak developer yang mencoba membuat teknologi javascript agar dapat dijalankan diluar browser.
+    padat tahun 2009 Ryan Dahl menciptakan Node.js. NodeJS menjadi javascript runtime yang dapat dieksekusi diluar browser
+
+    #Latihan Membuat Proyek Node JS
+    download & install Node JS terlebih dahulu setelah itu
+    buat sebuah folder baru (letakan difolder sesuai keinginan)
+    cek terlebih dahulu apakah nodejs sudah terinstal atau belum dengan cek node -v
+    kemudian ketikan perintah npm init --y didalam terminal, perintah tersebut konfigurasi secara default oleh nodejs
+
+    #latihan menjalankan Javascript menggunakan NodeJS
+    ada 2 cara menjalankan nodejs
+    cara pertama menggunakan node REPL dan yang kedua menggunakan ekstensi .js (javascript)
+
+    #Latihan node REPL
+    ketikan perintah node diterminal
+    ketikan console.log("hallo ini adalah program pertama");
+    hasilnya nilai undefined juga tercetak. Hal tersebut karena REPL selalu menampilkan nilai evaluasi pada console. Karena method console.log() tidak mengembalikan nilai, jadi undefined-lah yang tercetak pada console.
+    jika kita Inisialisasi menggunakan statement yang mengembalikan nilai tidak akan menghasilkan undefined contohnya
+    ketikan 4 + 4 diterminal maka hasilnya
+
+    #Latihan node menggunakan ekstensi .js
+    buat sebuah file baru yang bernama index.js (nama_file bebas) kemudian masukan script berikut ini kedalam file index.js
+        const pesan = (name) => {
+            console.log(`Hello ${name}`);
+        }
+ 
+        pesan('JavaScript');
+    kemudian ketikan node index.js diterminal kemudian tekan enter
+    hasilnya keluarannya adalah Hello JavaScript
+
+    #Node Global Object
+    javascript hanyalah bahasa pemrograman ia tidak tahu apakah dijalankan melalui browser atau nodejs. di browser javascript dapat mengontrol fungsionalitas browser
+    seperti mengunjungi halaman, memuat ulang halaman, menutup tabs serta menampilkan alert dialog. javascript dapat melakukan itu karena di browser menambahkan objek "window" pada javascript
+    di nodejs pun demikian, node menambahkan objek "global" guna memberikan fungsionalitas lebih pada javascript dengan tujuan mendukung pengembangan pada environmentnya. contoh melalui objek global kita dapat melihat
+    beberapa CPU yang digunakan pada komputer, modularisasi berkas javascript dan menampilkan nilai pada console dan hal lainnya.
+    pada objek "window" di browser dan objek "global" pada nodejs merupakan "global object". seluruh fungsi atau properti menjadi member dari global object yang dapat diakses dimana saja
+    jalankan perintah berikut ini console.log(Object.getOwnPropertyNames(global)); didalam index.js
+    perintah tersebut mencetak member" yang ada didalam nodejs dan objek tersebut dinamakan 'true globals' dan berikut ini daftarnya:
+        global : Global namespace. Member apa pun di dalam object ini dapat diakses pada cakupan global.
+        process : menyediakan interaksi dengan proses Node.js yang berjalan.
+        console : menyediakan berbagai fungsionalitas STDIO.
+        setTimeout, clearTimeout, setInterval, clearInterval.
+    Ada juga objek yang merupakan ‘pseudo-globals’ atau objek global semu. Objek ini tidak terlihat bila dicetak menggunakan Object.getOwnPropertyNames(global) sebab ia bukan member langsung dari objek global,
+    melainkan diturunkan dari cakupan module.Karena pada Node.js semua berkas JavaScript adalah module, jadi pseudo-globals dapat diakses layaknya global objek. contohnya sebagai berikut:
+        module : digunakan untuk sistem modularisasi pada Node.js.
+        __filename : keyword untuk mendapatkan lokasi berkas JavaScript yang dieksekusi. Keyword ini tidak tersedia pada Node.js REPL.
+        __dirname : keyword untuk mendapatkan root directory dari berkas JavaScript yang dieksekusi.
+        require : digunakan untuk mengimpor module JavaScript.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
