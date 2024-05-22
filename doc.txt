@@ -99,5 +99,16 @@ Section 2 Pengenalan Backend
         HTTP Verbs/Methods.
         HTTP Response code.
         URL Design.
+    
+    #Format Request dan Response
+    Rest Api Menggunakan JSON sebagai format data entah itu saat request ataupun response,
+    JSON/XML merupakan salah satu format standar REST API dalam transaksi data kita bisa menggunakan kedua format tersebut.
+    kita akan menggunakan JSON agar lebih mudah dibaca dan efisien dalam transaksi data, supaya REST API selalu merespons dengan format JSON pastikan
+    setiap response terdapat properti 'Content-Type dengan nilai application/json.'
+    JSON memiliki struktur key:value, bedanya key pada JSON selalu dituliskan menggunakan tanda kutip (""). value pada JSON dapat menampung nilai primitif
+    string,number,boolean atau nilai non primitif seperti object atau array
+    Catatan:
+        JSON ialah Javascript object Notation bukan berarti JSON adalah bahasa pemrograman javascript, format JSON bisa digunakan oleh semua bahasa pemrograman yang ada.
+        
 
 
